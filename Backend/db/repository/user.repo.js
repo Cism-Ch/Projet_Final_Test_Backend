@@ -1,55 +1,55 @@
 const {Task, User} = require('../models');
 
-const createTask = async (taskData) => {
+const createUser = async (userData) => {
     try {
-        const task = await Task.create(taskData);
-        return task;
+        const user = await User.create(userData);
+        return user;
     } catch (error) {
-        throw new Error('Error creating task: ' + error.message);
+        throw new Error('Error creating user: ' + error.message);
     }
 }
 
-const updateTask = async (taskId, taskData) => {
+const updateUser = async (userId, userData) => {
     try {
-        await Task.findByIdAndUpdate(taskId, taskData)
-        const result = await Task.findById(taskId);
+        await User.findByIdAndUpdate(userId, userData)
+        const result = await User.findById(userId);
         return result;
     } catch (error) {
-        throw new Error('Error updating task: ' + error.message);
+        throw new Error('Error updating user: ' + error.message);
     }
 }
 
-const findOneTask = async (query) => {
+const findOneUser = async (query) => {
     try {
-        const result = await Task.findOne(query);
+        const result = await User.findOne(query);
         return result;
     } catch (error) {
-        throw new Error('Error finding task: ' + error.message);
+        throw new Error('Error finding user: ' + error.message);
     }
 }
 
-const getOwnerTasks = async (ownerId) => {
+const getUsers = async (ownerId) => {
     try {
-        const tasks = await Task.find({ owner: ownerId });
-        return tasks;
+        const users = await User.find({ owner: ownerId });
+        return users;
     } catch (error) {
-        throw new Error('Error fetching tasks: ' + error.message);
+        throw new Error('Error fetching users: ' + error.message);
     }
 }
 
-const deleteTask = async (taskId) => {
+const deleteUser = async (userId) => {
     try {
-        const result = await Task.findByIdAndDelete(taskId);
+        const result = await User.findByIdAndDelete(userId);
         return result;
     } catch (error) {
-        throw new Error('Error deleting task: ' + error.message);
+        throw new Error('Error deleting user: ' + error.message);
     }
 }
 
 module.exports = {
-    createTask,
-    updateTask,
-    findOneTask,
-    getOwnerTasks,
-    deleteTask
+    createUser,
+    updateUser,
+    findOneUser,
+    getUsers,
+    deleteUser
 };
