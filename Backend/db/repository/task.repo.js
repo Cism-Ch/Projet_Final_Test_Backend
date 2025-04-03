@@ -1,4 +1,4 @@
-const {Task, User} = require('../models');
+const {Task, User} = require('../model');
 
 const createTask = async (taskData) => {
     try {

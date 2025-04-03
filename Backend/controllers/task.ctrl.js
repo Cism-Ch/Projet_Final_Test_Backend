@@ -55,3 +55,11 @@ const deleteTask = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
+
+module.exports = {
+    postTask,
+    updateTask,
+    getOwnerTasks,
+    findOneTask,
+    deleteTask
+}
