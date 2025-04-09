@@ -3,22 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+require("dotenv").config()
+
+require('./db/connection')
 
 // var indexRouter = require('./routes/index');
 var taskRouter = require('./routes/task.route');
-
+var authRouter = require('./routes/auth.route');
 var app = express();
 
-
-require('dotenv').config(); // Add this line to load environment variables
-const connectDB = require('./db/connection'); // Import the database connection
-// Connect to MongoDB
-connectDB();
-
-
 // // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -28,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', indexRouter);
 app.use('/api/v1/task', taskRouter);
+app.use('/api/v1/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
