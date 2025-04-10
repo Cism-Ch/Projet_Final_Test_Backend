@@ -15,7 +15,7 @@ const activation = async (req, res) => {
 }
 
 const login = async (req, res) => {
-
+    console.log('login: ', req.body)
     const result = await service.login(req.body)
 
     res.status(result.status).json({...result})
