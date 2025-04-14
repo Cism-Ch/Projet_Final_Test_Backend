@@ -20,6 +20,7 @@ const initialState = {
 export const authenticate = createAsyncThunk('auth/login', async (payload) => {
     console.log('payload: ', payload)
     const {data} = await axios.post(`${URL}/api/v1/auth/login`, payload);
+    console.log('auth data: ', data)
     return data
 })
 
@@ -36,6 +37,8 @@ export const register = createAsyncThunk('auth/register',  async (payload) => {
 })
 
 export const activate = createAsyncThunk('auth/activation', async (payload) => {
+    console.log('payload: ', payload)
+    console.log('URL: ', `${URL}/api/v1/auth/activation`)
     const {data} = await axios.post(`${URL}/api/v1/auth/activation`, payload);
     return data
 })

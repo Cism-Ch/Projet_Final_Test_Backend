@@ -19,14 +19,16 @@ const updateTask = async (taskId, taskData) => {
     }
 }
 
-const findOneTask = async (query) => {
-    try {
-        const result = await Task.findOne(query);
-        return result;
-    } catch (error) {
-        throw new Error('Error finding task: ' + error.message);
-    }
-}
+// const deleteManyTasks = async (query = { ids: [] }) => {
+//     try {
+//         // You can now call this function with { completed: true } 
+//         // to get all completed tasks, or with no parameter to get all tasks
+//         const result = await Task.find(query);
+//         return result;
+//     } catch (error) {
+//         throw new Error('Error finding completed tasks: ' + error.message);
+//     }
+// }
 
 const getOwnerTasks = async (ownerId) => {
     try {
@@ -49,7 +51,6 @@ const deleteTask = async (taskId) => {
 module.exports = {
     createTask,
     updateTask,
-    findOneTask,
     getOwnerTasks,
     deleteTask
 };

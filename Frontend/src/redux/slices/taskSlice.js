@@ -26,23 +26,24 @@ export const getTasks = createAsyncThunk('task/getTasks', async () => {
 
 export const postTask = createAsyncThunk('task/postTask',  async (payload) => {
     console.log('payload: ', payload)
-    const {data} = await axios.post(`${URL}/api/v1/tasks`, payload, {headers: {Authorization: getToken()}});
+    const {data} = await axios.post(`${URL}/api/v1/tasks/create`, payload, {headers: {Authorization: getToken()}});
     return data
 })
 
 export const putTask = createAsyncThunk('task/putTask', async (payload) => {
-    const {data} = await axios.put(`${URL}/api/v1/tasks/${payload._id}`, payload, {headers: {Authorization: getToken()}});
+    const {data} = await axios.put(`${URL}/api/v1/tasks/update/${payload._id}`, payload, {headers: {Authorization: getToken()}});
     return data
 })
 
 export const deleteTask = createAsyncThunk(
     'task/deleteTask', async (id) => {
-    const {data} = await axios.delete(`${URL}/api/v1/tasks/${id}`, {headers: {Authorization: getToken()}});
+    const {data} = await axios.delete(`${URL}/api/v1/tasks/delete/${id}`, {headers: {Authorization: getToken()}});
     return data
 })
 
 export const deleteManyTask = createAsyncThunk(
     'task/deleteMenyTask', async (payload) => {
+        console.log('id list payload: ', payload)
     const {data} = await axios.post(`${URL}/api/v1/tasks/delete-many`, payload, {headers: {Authorization: getToken()}});
     return data
 })

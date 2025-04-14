@@ -16,9 +16,9 @@ function App() {
       <Route path="/home" element={ <PrivateRoute > <Home /> </PrivateRoute> } />
       <Route path="/security" element={<Layout />} >
           <Route index element={<Navigate to="login" />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register"  element={<Register />} />
-          <Route path="activation"  element={<Activation />} />
+          <Route path="login" element={<Login/>} />
+          <Route path="register"  element={<Register/>} />
+          <Route path="activation"  element={<Activation/>} />
       </Route>
       <Route path="*"  element={<Navigate to="/" replace={true} />} />
     </Routes>

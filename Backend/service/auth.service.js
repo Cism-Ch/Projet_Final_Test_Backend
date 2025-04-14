@@ -48,7 +48,7 @@ const register = async (userData) =>{
 const Activate = async (payload) => {
 
   const { token, userId } = payload;
-  
+  console.log('userId: ', userId)
   const user = await TmpUser.findById(userId);
 
   if (!user) {

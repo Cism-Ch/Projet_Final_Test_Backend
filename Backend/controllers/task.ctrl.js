@@ -1,4 +1,5 @@
 const {TaskRepo} = require('../db/repository');
+const {Task} = require('../db/model');
 
 const postTask = async (req, res) => {
     try {
@@ -33,18 +34,17 @@ const getOwnerTasks = async (req, res) => {
     }
 }
 
-const findOneTask = async (req, res) => {
+
+const deleteManyTasks = async (req, res) => {
     try {
-        const taskId = req.params.id;
-        const task = await TaskRepo.findOneTask({ _id: taskId });
-        if (!task) {
-            return res.status(404).json({ message: 'Task not found' });
-        }
-        res.status(200).json(task);
-    }catch (error) {
+        const result = await Task.deleteMany({ completed: true })
+        console.log('deleted many result: ', result)
+        res.status(200).json(result);
+    } catch (error) {
         res.status(500).json({ message: error.message });
     }
 }
+
 
 const deleteTask = async (req, res) => {
     try {
@@ -60,6 +60,6 @@ module.exports = {
     postTask,
     updateTask,
     getOwnerTasks,
-    findOneTask,
+    deleteManyTasks,
     deleteTask
 }; // Export the controller functions for use in the router
